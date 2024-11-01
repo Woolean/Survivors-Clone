@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=3 uid="uid://brtuov81ug3o3"]
+
+[ext_resource type="Texture2D" uid="uid://c8ouvg76qg4iv" path="res://Textures/Items/Scenery/Tree.png" id="1_u344k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w7egh"]
+atlas = ExtResource("1_u344k")
+region = Rect2(0, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0krbo"]
+atlas = ExtResource("1_u344k")
+region = Rect2(192, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t8qsi"]
+atlas = ExtResource("1_u344k")
+region = Rect2(384, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8fova"]
+atlas = ExtResource("1_u344k")
+region = Rect2(576, 0, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wsy86"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w7egh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0krbo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t8qsi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8fova")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_npu1k"]
+size = Vector2(20, 54)
+
+[node name="tree" type="CharacterBody2D"]
+light_mask = 15
+visibility_layer = 15
+texture_filter = 2
+collision_layer = 15
+collision_mask = 15
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 2
+position = Vector2(-1, 1)
+sprite_frames = SubResource("SpriteFrames_wsy86")
+autoplay = "default"
+frame = 3
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 15
+visibility_layer = 15
+texture_filter = 2
+position = Vector2(0, 41)
+shape = SubResource("RectangleShape2D_npu1k")

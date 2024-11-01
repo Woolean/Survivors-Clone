@@ -1,0 +1,146 @@
+[gd_scene load_steps=13 format=3 uid="uid://dnvcymchlwfo6"]
+
+[ext_resource type="Script" path="res://World/menu.gd" id="1_8ct66"]
+[ext_resource type="FontFile" uid="uid://ca4en6mqmcvdd" path="res://Font/Ronysiswadi14-z82L3.ttf" id="1_tl3td"]
+[ext_resource type="Texture2D" uid="uid://l7ihaw1vdcyq" path="res://Textures/Player/TNT_Purple.png" id="2_t7uq0"]
+[ext_resource type="PackedScene" uid="uid://balru7lvyblj1" path="res://Utility/basic_button.tscn" id="4_tkgc3"]
+[ext_resource type="Texture2D" uid="uid://bepd5h8otuy2o" path="res://Textures/GUI/Carved_9Slides.png" id="5_c02i3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w3oh6"]
+atlas = ExtResource("2_t7uq0")
+region = Rect2(0, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7w7f7"]
+atlas = ExtResource("2_t7uq0")
+region = Rect2(192, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ibxx"]
+atlas = ExtResource("2_t7uq0")
+region = Rect2(384, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_do6j6"]
+atlas = ExtResource("2_t7uq0")
+region = Rect2(576, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_51ieu"]
+atlas = ExtResource("2_t7uq0")
+region = Rect2(768, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lpeju"]
+atlas = ExtResource("2_t7uq0")
+region = Rect2(960, 0, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0yvt8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w3oh6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7w7f7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ibxx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_do6j6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_51ieu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lpeju")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8ct66")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+top_level = true
+texture_filter = 2
+position = Vector2(318, 657)
+scale = Vector2(1.66667, 1.63542)
+sprite_frames = SubResource("SpriteFrames_0yvt8")
+autoplay = "default"
+frame_progress = 0.00196822
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1621.0
+offset_bottom = 921.0
+color = Color(0.458824, 0.321569, 0.588235, 1)
+
+[node name="lbl_title" type="Label" parent="."]
+texture_filter = 2
+layout_mode = 0
+offset_left = 161.0
+offset_top = 17.0
+offset_right = 1441.0
+offset_bottom = 217.0
+theme_override_fonts/font = ExtResource("1_tl3td")
+theme_override_font_sizes/font_size = 119
+text = "GOBLIN SURVIVORS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="lbl_tutorial" type="Label" parent="."]
+modulate = Color(0, 0, 0, 1)
+top_level = true
+texture_filter = 2
+layout_mode = 0
+offset_left = 287.0
+offset_top = 337.0
+offset_right = 706.0
+offset_bottom = 537.0
+theme_override_fonts/font = ExtResource("1_tl3td")
+theme_override_font_sizes/font_size = 50
+text = "W, A, S, D TO MOVE
+MOUSE TO SELECT
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button_play" parent="." instance=ExtResource("4_tkgc3")]
+modulate = Color(1, 1, 1, 1)
+layout_mode = 0
+offset_left = 1165.0
+offset_top = 330.0
+offset_right = 1405.0
+offset_bottom = 430.0
+theme_override_fonts/font = ExtResource("1_tl3td")
+theme_override_font_sizes/font_size = 40
+text = "PLAY"
+
+[node name="Button_exit" parent="." instance=ExtResource("4_tkgc3")]
+modulate = Color(1, 1, 1, 1)
+layout_mode = 0
+offset_left = 1167.0
+offset_top = 550.0
+offset_right = 1407.0
+offset_bottom = 650.0
+theme_override_fonts/font = ExtResource("1_tl3td")
+theme_override_font_sizes/font_size = 40
+text = "EXIT"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 253.0
+offset_top = 304.0
+offset_right = 729.0
+offset_bottom = 572.0
+texture = ExtResource("5_c02i3")
+
+[connection signal="click_end" from="Button_play" to="." method="_on_button_play_click_end"]
+[connection signal="click_end" from="Button_exit" to="." method="_on_button_exit_click_end"]
