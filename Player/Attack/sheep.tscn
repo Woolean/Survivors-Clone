@@ -1,0 +1,162 @@
+[gd_scene load_steps=20 format=3 uid="uid://b27pk7mvaim5m"]
+
+[ext_resource type="Texture2D" uid="uid://dw1nshaqmskm3" path="res://Textures/Player/HappySheep_All.png" id="1_5kp7l"]
+[ext_resource type="Script" path="res://Player/Attack/sheep.gd" id="1_a2sr8"]
+[ext_resource type="AudioStream" uid="uid://duq6fmsuncnsa" path="res://Audio/SoundEffect/sheep_1-2-91310.mp3" id="3_jjggx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_caven"]
+atlas = ExtResource("1_5kp7l")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cxgvi"]
+atlas = ExtResource("1_5kp7l")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7ub1"]
+atlas = ExtResource("1_5kp7l")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gptwv"]
+atlas = ExtResource("1_5kp7l")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_evn3h"]
+atlas = ExtResource("1_5kp7l")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dy1rm"]
+atlas = ExtResource("1_5kp7l")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_550nb"]
+atlas = ExtResource("1_5kp7l")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1i6yk"]
+atlas = ExtResource("1_5kp7l")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n8kb5"]
+atlas = ExtResource("1_5kp7l")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3mt8y"]
+atlas = ExtResource("1_5kp7l")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_au1yn"]
+atlas = ExtResource("1_5kp7l")
+region = Rect2(256, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tvq43"]
+atlas = ExtResource("1_5kp7l")
+region = Rect2(384, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_60ybx"]
+atlas = ExtResource("1_5kp7l")
+region = Rect2(512, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_st7v0"]
+atlas = ExtResource("1_5kp7l")
+region = Rect2(640, 128, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_74607"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_caven")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cxgvi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7ub1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gptwv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_evn3h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dy1rm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_550nb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1i6yk")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n8kb5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3mt8y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_au1yn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tvq43")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_60ybx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_st7v0")
+}],
+"loop": true,
+"name": &"running",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p1k3x"]
+size = Vector2(34, 19)
+
+[node name="Sheep" type="Area2D" groups=["attack"]]
+top_level = true
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_a2sr8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_as_relative = false
+position = Vector2(-9.53674e-07, 9.53674e-07)
+scale = Vector2(1.01953, 0.972656)
+sprite_frames = SubResource("SpriteFrames_74607")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.907211
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_p1k3x")
+disabled = true
+
+[node name="AttackTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="ChangeDirection" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 3.0
+
+[node name="ResetPosTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 3.0
+autostart = true
+
+[node name="snd_attack" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_jjggx")
+volume_db = 6.0
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="ChangeDirection" to="." method="_on_change_direction_timeout"]
+[connection signal="timeout" from="ResetPosTimer" to="." method="_on_reset_pos_timer_timeout"]
